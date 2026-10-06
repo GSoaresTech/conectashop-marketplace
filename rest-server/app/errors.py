@@ -26,3 +26,11 @@ def resposta_erro(request, status, codigo, mensagem):
 
 async def tratar_erro_api(request, erro):
     return resposta_erro(request, erro.status, erro.codigo, erro.mensagem)
+
+
+async def tratar_corpo_invalido(request, erro):
+    return resposta_erro(request, 400, "INVALID_REQUEST", "Invalid JSON or missing required field")
+
+
+async def tratar_erro_http(request, erro):
+    return resposta_erro(request, erro.status_code, "INVALID_REQUEST", erro.detail)
