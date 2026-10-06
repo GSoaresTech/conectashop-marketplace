@@ -8,13 +8,13 @@ Cada feature corresponde a uma branch. Status: `A fazer`, `Em andamento`, `Concl
 | Épico | Feature | Responsável | Branch | Status |
 |---|---|---|---|---|
 | E01 | F01 Estrutura do repositório | Gabriel | `feature/f01-estrutura-repositorio` | Concluído |
-| E02 | F02 Configuração do servidor REST | Gabriel | `feature/f02-rest-configuracao` | A fazer |
-| E02 | F03 Headers obrigatórios | Gabriel | `feature/f03-rest-headers` | A fazer |
-| E02 | F04 Consulta de produto | Gabriel | `feature/f04-rest-consulta-produto` | A fazer |
-| E02 | F05 Cotação | Gabriel | `feature/f05-rest-cotacao` | A fazer |
-| E02 | F06 Erros padronizados | Gabriel | `feature/f06-rest-erros` | A fazer |
-| E02 | F07 Logs REST | Gabriel | `feature/f07-rest-logs` | A fazer |
-| E02 | F08 Testes REST | Gabriel | `feature/f08-rest-testes` | A fazer |
+| E02 | F02 Configuração do servidor REST | Gabriel | `feature/rest-server` | Concluído |
+| E02 | F03 Headers obrigatórios | Gabriel | `feature/rest-server` | Concluído |
+| E02 | F04 Consulta de produto | Gabriel | `feature/rest-server` | Concluído |
+| E02 | F05 Cotação | Gabriel | `feature/rest-server` | Concluído |
+| E02 | F06 Erros padronizados | Gabriel | `feature/rest-server` | Concluído |
+| E02 | F07 Logs REST | Gabriel | `feature/rest-server` | Concluído |
+| E02 | F08 Testes REST | Gabriel | `feature/rest-server` | Concluído |
 | E03 | F09 Configuração do servidor gRPC | membro3 | `feature/f09-grpc-configuracao` | A fazer |
 | E03 | F10 Health | membro3 | `feature/f10-grpc-health` | A fazer |
 | E03 | F11 Validação de entrada | membro3 | `feature/f11-grpc-validacao` | A fazer |
