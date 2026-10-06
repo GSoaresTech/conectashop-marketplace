@@ -3,6 +3,7 @@
 import uvicorn
 from fastapi import APIRouter, Depends, FastAPI, Header, Request
 
+from app.catalog import buscar_produto
 from app.config import HOST, PORT, SERVER_TEAM
 from app.errors import ErroApi, RespostaJson, tratar_erro_api
 
@@ -34,6 +35,14 @@ async def processar_chamada(request: Request, call_next):
         resposta.headers["X-Request-ID"] = request_id
 
     return resposta
+
+
+@api.get("/products/{sku}")
+def consultar_produto(sku: str):
+    produto = buscar_produto(sku)
+    if produto is None:
+        raise ErroApi(404, "PRODUCT_NOT_FOUND", "Product not found")
+    return produto
 
 
 app.include_router(api)
