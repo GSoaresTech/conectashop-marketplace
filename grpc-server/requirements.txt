@@ -1,3 +1,2 @@
-grpcio>=1.66
-grpcio-tools>=1.66
-pytest>=8.0
+grpcio==1.84.0
+grpcio-tools==1.84.0

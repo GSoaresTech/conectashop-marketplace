@@ -1,1 +1,0 @@
-"""Inicialização do servidor gRPC."""
