@@ -16,6 +16,9 @@ class ErroApi(Exception):
 
 
 def resposta_erro(request, status, codigo, mensagem):
+    # O middleware lê esse valor para preencher o campo result do log
+    request.state.resultado = codigo
+
     corpo = {
         "code": codigo,
         "message": mensagem,

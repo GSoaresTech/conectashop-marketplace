@@ -17,6 +17,7 @@ from app.errors import (
     tratar_erro_api,
     tratar_erro_http,
 )
+from app.logs import registrar
 from app.quotes import PedidoCotacao, calcular_cotacao, validar_itens
 
 
@@ -52,11 +53,14 @@ async def processar_chamada(request: Request, call_next):
     if request_id:
         resposta.headers["X-Request-ID"] = request_id
 
+    registrar(request, resposta.status_code)
     return resposta
 
 
 @api.get("/products/{sku}")
-def consultar_produto(sku: str):
+def consultar_produto(sku: str, request: Request):
+    request.state.entrada = sku
+
     produto = buscar_produto(sku)
     if produto is None:
         raise ErroApi(404, "PRODUCT_NOT_FOUND", "Product not found")
@@ -65,6 +69,8 @@ def consultar_produto(sku: str):
 
 @api.post("/quotes")
 def criar_cotacao(pedido: PedidoCotacao, request: Request):
+    request.state.entrada = ",".join(f"{item.sku}x{item.quantity}" for item in pedido.items) or "-"
+
     validar_itens(pedido.items)
     cotacao = calcular_cotacao(pedido.items)
     return {"requestId": request.headers["X-Request-ID"], **cotacao}
