@@ -1,134 +1,92 @@
- ConectaShop — Servidor gRPC.
+# Servidor gRPC — ShippingService
 
- Implementação do servidor gRPC da dinâmica IntegraLab — Interoperabilidade REST e gRPC orientada por contratos, para o cenário ConectaShop.
+- Responsável: membro3
+- Tecnologia: Python 3.13, grpcio
+- Contrato: [contracts/grpc/shipping.proto](../contracts/grpc/shipping.proto) e [regras do serviço](../contracts/grpc/README.md)
+- Backlog: épico E03 (F09 a F14)
 
+## Estrutura
 
+| Arquivo | Conteúdo |
+|---|---|
+| `main.py` | Servidor, validações, cálculo do frete e logs |
+| `shipping_pb2.py` e `shipping_pb2_grpc.py` | Stubs gerados a partir do contrato (não editar) |
+| `proto/shipping.proto` | Cópia do contrato |
+| `testes_grpc.py` | Chamadas G1–G5 contra o servidor em execução |
+| `logs/server.log` | Registro das chamadas recebidas |
 
- 1. Responsabilidade.
+## Variáveis de ambiente
 
+| Variável | Padrão |
+|---|---|
+| `SERVER_TEAM` | `S01` |
+| `GRPC_PORT` | `50051` |
 
- 
-Este projeto implementa o serviço gRPC ShippingService, definido no contrato proto/shipping.proto, com os métodos:
+O host é fixo em `0.0.0.0`, então o serviço aceita conexões de outras máquinas.
 
-- Health
-- CalculateShipping
+## Execução
 
-O servidor deve seguir exatamente o contrato fornecido pela atividade.
+Todos os comandos são executados dentro de `grpc-server/`.
 
+### Instalação
 
+Linux:
 
- 2.  Pre-requisitos & Tecnologias.
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
 
+Windows (CMD):
 
+```bat
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
+```
 
-- Python Python 3.13+ instalado e disponível no PATH.
-- Windows ou outro sistema compatível com Python/gRPC.
-- gRPC Python (grpcio)
-- grpcio-tools para geração dos arquivos Python a partir do .proto
-- Protocol Buffers (proto3)
+### Gerar os stubs
 
+`shipping_pb2.py` e `shipping_pb2_grpc.py` já estão no repositório. Só é preciso gerar de novo se forem apagados:
 
+```bash
+python -m grpc_tools.protoc -I../contracts/grpc --python_out=. --grpc_python_out=. ../contracts/grpc/shipping.proto
+```
 
- 3. Criar e ativar o ambiente virtual.
+### Iniciar o servidor
 
+Linux:
 
+```bash
+SERVER_TEAM=S03 python main.py
+```
 
- No Windows:
+Windows (CMD):
 
-- Abrir o CMD na pasta do raiz servidor gRPC.
-- Criar o ambiente virtual usando o comando "python -m venv .venv".
-- Ativar o ambiente virtual ".venv\Scripts\activate".
+```bat
+set SERVER_TEAM=S03
+python main.py
+```
 
+O serviço fica disponível em `<ip-da-maquina>:50051`. O terminal mostra o andamento de cada chamada recebida.
 
+### Testes
 
-4. Instalar as dependências.
+Com o servidor em execução, em outro terminal com o ambiente ativado:
 
+```bash
+python testes_grpc.py
+```
 
+O script usa o endereço fixo `192.168.1.5:50051`. Para testar em outra máquina ou em `localhost`, troque esse endereço nas chamadas a `grpc.insecure_channel`.
 
-- pip install -r requirements.txt
+### Exemplo de chamada
 
+```bash
+python -c "import grpc, shipping_pb2 as pb, shipping_pb2_grpc as rpc; c = rpc.ShippingServiceStub(grpc.insecure_channel('localhost:50051')); print(c.Health(pb.HealthRequest(), metadata=[('x-client-team', 'C01')]))"
+```
 
+## Logs
 
-5. Gerar os arquivos Python do contrato
-
-
-
-Com shipping.proto dentro de proto/, executar na pasta raiz do projeto:
-
-python -m grpc_tools.protoc -I./proto --python_out=. --grpc_python_out=. ./proto/shipping.proto
-
-Isso gera:
-
-shipping_pb2.py
-shipping_pb2_grpc.py
-
-Esses arquivos são gerados automaticamente e não devem ser editados manualmente.
-
-
-
-6. Configuração do servidor
-
-
-
-O servidor usa as seguintes configurações padrão:
-
-SERVER_TEAM=S01
-GRPC_PORT=50051
-
-"O código da equipe "S01" é provisório e deve ser substituído pelo código real da equipe quando definido".
-
-O servidor faz bind em:
-
-0.0.0.0:50051
-
-Para integração, o destino informado aos clientes será no formato:
-
-<IP-DO-SERVIDOR>:50051
-
-
-Durante os testes realizados neste computador, o endereço de rede utilizado foi:
-
-192.168.1.5:50051
-
-"O endereço IP pode mudar conforme a rede utilizada. Confirmar o IP antes da integração".
-
-
-
-7. Iniciar o servidor
-
-
-
-Com o ambiente virtual ativado:
-
-python server-gRPC.py
-
-"O servidor permanece executando e aguardando chamadas gRPC".
-
-
-
-8. Executar os testes locais
-
-
-
-Com o servidor em execução, abrir outro terminal na pasta raiz do servidor, ativar o ambiente virtual e executar:
-
-"python testes_grpc.py"
-
-
-
-9. Logs
-
-
-
-As chamadas recebidas pelo servidor são gravadas na pasta:
-
-logs/server.log
-
-"Os registros incluem informações como protocolo, servidor, cliente, Request ID, operação, parâmetros principais e resultado".
-
-
-
-
-
-
-
+Cada chamada recebida é gravada em `grpc-server/logs/server.log`. Ao fim da janela de testes, copie o arquivo para `logs/grpc/`, na raiz do repositório, como pede o [roteiro de integração](../docs/integracao.md).
