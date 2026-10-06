@@ -6,6 +6,7 @@ from fastapi import APIRouter, Depends, FastAPI, Header, Request
 from app.catalog import buscar_produto
 from app.config import HOST, PORT, SERVER_TEAM
 from app.errors import ErroApi, RespostaJson, tratar_erro_api
+from app.quotes import PedidoCotacao, calcular_cotacao, validar_itens
 
 
 def validar_headers(
@@ -43,6 +44,13 @@ def consultar_produto(sku: str):
     if produto is None:
         raise ErroApi(404, "PRODUCT_NOT_FOUND", "Product not found")
     return produto
+
+
+@api.post("/quotes")
+def criar_cotacao(pedido: PedidoCotacao, request: Request):
+    validar_itens(pedido.items)
+    cotacao = calcular_cotacao(pedido.items)
+    return {"requestId": request.headers["X-Request-ID"], **cotacao}
 
 
 app.include_router(api)
