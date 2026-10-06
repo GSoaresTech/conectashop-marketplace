@@ -5,3 +5,24 @@ from fastapi.responses import JSONResponse
 
 class RespostaJson(JSONResponse):
     media_type = "application/json; charset=utf-8"
+
+
+class ErroApi(Exception):
+    def __init__(self, status, codigo, mensagem):
+        super().__init__(mensagem)
+        self.status = status
+        self.codigo = codigo
+        self.mensagem = mensagem
+
+
+def resposta_erro(request, status, codigo, mensagem):
+    corpo = {
+        "code": codigo,
+        "message": mensagem,
+        "requestId": request.headers.get("X-Request-ID"),
+    }
+    return RespostaJson(corpo, status_code=status)
+
+
+async def tratar_erro_api(request, erro):
+    return resposta_erro(request, erro.status, erro.codigo, erro.mensagem)

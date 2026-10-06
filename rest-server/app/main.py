@@ -1,14 +1,39 @@
 """Criação da aplicação FastAPI e registro das rotas."""
 
 import uvicorn
-from fastapi import APIRouter, FastAPI
+from fastapi import APIRouter, Depends, FastAPI, Header, Request
 
 from app.config import HOST, PORT, SERVER_TEAM
-from app.errors import RespostaJson
+from app.errors import ErroApi, RespostaJson, tratar_erro_api
+
+
+def validar_headers(
+    x_client_team: str | None = Header(default=None),
+    x_request_id: str | None = Header(default=None),
+):
+    if not x_client_team or not x_request_id:
+        raise ErroApi(
+            400,
+            "MISSING_REQUIRED_HEADER",
+            "Headers X-Client-Team and X-Request-ID are required",
+        )
+
 
 app = FastAPI(title="Catalog & Quote API", version="v1", default_response_class=RespostaJson)
+app.add_exception_handler(ErroApi, tratar_erro_api)
 
-api = APIRouter(prefix="/api/v1")
+api = APIRouter(prefix="/api/v1", dependencies=[Depends(validar_headers)])
+
+
+@app.middleware("http")
+async def processar_chamada(request: Request, call_next):
+    resposta = await call_next(request)
+
+    request_id = request.headers.get("X-Request-ID")
+    if request_id:
+        resposta.headers["X-Request-ID"] = request_id
+
+    return resposta
 
 
 app.include_router(api)
