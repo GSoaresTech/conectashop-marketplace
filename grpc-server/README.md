@@ -11,7 +11,6 @@
 |---|---|
 | `main.py` | Servidor, validações, cálculo do frete e logs |
 | `shipping_pb2.py` e `shipping_pb2_grpc.py` | Stubs gerados a partir do contrato (não editar) |
-| `proto/shipping.proto` | Cópia do contrato |
 | `testes_grpc.py` | Chamadas G1–G5 contra o servidor em execução |
 
 ## Variáveis de ambiente
