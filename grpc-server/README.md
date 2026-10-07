@@ -1,4 +1,4 @@
-# Servidor gRPC — ShippingService
+# Servidor gRPC: ShippingService
 
 - Responsável: Gabriel Marques
 - Tecnologia: Python 3.13, grpcio
@@ -57,13 +57,13 @@ python -m grpc_tools.protoc -I../contracts/grpc --python_out=. --grpc_python_out
 Linux:
 
 ```bash
-SERVER_TEAM=S03 python main.py
+SERVER_TEAM=S13 python main.py
 ```
 
 Windows (CMD):
 
 ```bat
-set SERVER_TEAM=S03
+set SERVER_TEAM=S13
 python main.py
 ```
 
