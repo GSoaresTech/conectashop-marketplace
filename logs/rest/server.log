@@ -1,0 +1,13 @@
+[2026-10-06T20:09:07] protocol=REST server=S13 client=- requestId=- operation=GET:/ input=- status=404 result=INVALID_REQUEST
+[2026-10-06T20:29:39] protocol=REST server=S13 client=- requestId=- operation=GET:/ input=- status=404 result=INVALID_REQUEST
+[2026-10-06T20:29:58] protocol=REST server=S13 client=- requestId=- operation=GET:/docs input=- status=200 result=OK
+[2026-10-06T20:29:59] protocol=REST server=S13 client=- requestId=- operation=GET:/openapi.json input=- status=200 result=OK
+[2026-10-06T20:30:29] protocol=REST server=S13 client=- requestId=- operation=GET:/docs input=- status=200 result=OK
+[2026-10-06T20:30:44] protocol=REST server=S13 client=- requestId=- operation=GET:/openapi.json input=- status=200 result=OK
+[2026-10-06T20:31:51] protocol=REST server=S13 client=S13 requestId=- operation=GET_PRODUCT input=- status=400 result=MISSING_REQUIRED_HEADER
+[2026-10-06T20:32:35] protocol=REST server=S13 client=S13 requestId=req-001 operation=GET_PRODUCT input=KB-100 status=200 result=OK
+[2026-10-06T20:38:33] protocol=REST server=S13 client=S13 requestId=MN-400 operation=GET_PRODUCT input=KB-100 status=200 result=OK
+[2026-10-06T20:39:32] protocol=REST server=S13 client=S13 requestId=req-001 operation=CREATE_QUOTE input=stringx0 status=422 result=INVALID_PRODUCT
+[2026-10-06T20:40:28] protocol=REST server=S13 client=S13 requestId=req-001 operation=CREATE_QUOTE input=KB-100x0 status=422 result=INVALID_QUANTITY_OR_ITEMS
+[2026-10-06T20:40:42] protocol=REST server=S13 client=S13 requestId=req-001 operation=CREATE_QUOTE input=KB-100x1000000000000 status=422 result=INVALID_QUANTITY_OR_ITEMS
+[2026-10-06T20:40:52] protocol=REST server=S13 client=S13 requestId=req-001 operation=CREATE_QUOTE input=KB-100x1 status=200 result=OK

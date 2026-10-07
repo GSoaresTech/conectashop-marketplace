@@ -2,10 +2,12 @@
 
 Logs das chamadas recebidas pelos servidores. Fazem parte da entrega final.
 
-| Pasta | Origem |
+| Arquivo | Origem |
 |---|---|
-| `rest/` | Servidor REST |
-| `grpc/` | Servidor gRPC |
+| `rest/server.log` | Servidor REST |
+| `grpc/server.log` | Servidor gRPC |
+
+Os dois servidores gravam direto nestes arquivos, sempre acrescentando linhas ao final.
 
 ## Formato mínimo
 
@@ -17,3 +19,12 @@ Cada linha deve conter horário, protocolo, equipe Servidor, equipe Cliente, Req
 ```
 
 Chamadas com erro também devem ser registradas.
+
+## Integração de 06/10/2026
+
+Os arquivos versionados são os logs da máquina `172.16.17.59` no dia da integração, sem edição.
+
+- `rest/server.log`: as linhas das 20:29 às 20:40 são as chamadas do Cliente C5, feitas pela página `/docs` do servidor. O C5 preencheu `X-Client-Team` com `S13`, o código do Servidor, por isso o campo `client` não mostra `C5`.
+- `grpc/server.log`: só registra as inicializações do servidor. Nenhuma chamada gRPC chegou durante a janela.
+
+A análise completa está no [relatório técnico](../docs/relatorio/).
