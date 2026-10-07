@@ -13,7 +13,6 @@
 | `shipping_pb2.py` e `shipping_pb2_grpc.py` | Stubs gerados a partir do contrato (não editar) |
 | `proto/shipping.proto` | Cópia do contrato |
 | `testes_grpc.py` | Chamadas G1–G5 contra o servidor em execução |
-| `logs/server.log` | Registro das chamadas recebidas |
 
 ## Variáveis de ambiente
 
@@ -89,4 +88,4 @@ python -c "import grpc, shipping_pb2 as pb, shipping_pb2_grpc as rpc; c = rpc.Sh
 
 ## Logs
 
-Cada chamada recebida é gravada em `grpc-server/logs/server.log`. Ao fim da janela de testes, copie o arquivo para `logs/grpc/`, na raiz do repositório, como pede o [roteiro de integração](../docs/integracao.md).
+Cada chamada recebida é gravada em `logs/grpc/server.log`, na raiz do repositório, no mesmo formato do log REST descrito em [logs/README.md](../logs/README.md).
