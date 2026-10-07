@@ -78,7 +78,11 @@ Com o servidor em execução, em outro terminal com o ambiente ativado:
 python testes_grpc.py
 ```
 
-O script usa o endereço fixo `192.168.1.5:50051`. Para testar em outra máquina ou em `localhost`, troque esse endereço nas chamadas a `grpc.insecure_channel`.
+Por padrão o script chama `localhost:50051`. Para testar o servidor de outra máquina, informe o endereço em `GRPC_TARGET`:
+
+```bash
+GRPC_TARGET=172.16.17.59:50051 python testes_grpc.py
+```
 
 ### Exemplo de chamada
 

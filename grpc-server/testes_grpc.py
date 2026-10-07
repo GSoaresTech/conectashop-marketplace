@@ -1,14 +1,17 @@
+import os
+
 import grpc
 
 import shipping_pb2
 import shipping_pb2_grpc
 
 
-#grpc.insecure_channel("localhost:50051") para testes do localhost
-#grpc.insecure_channel("192.168.1.5:50051") para testes em rede
+# Para testar outra maquina: GRPC_TARGET=172.16.17.59:50051 python testes_grpc.py
+ENDERECO = os.getenv("GRPC_TARGET", "localhost:50051")
+
 
 def testar_health():
-    canal = grpc.insecure_channel("192.168.1.5:50051")
+    canal = grpc.insecure_channel(ENDERECO)
     cliente = shipping_pb2_grpc.ShippingServiceStub(canal)
 
     resposta = cliente.Health(
@@ -24,7 +27,7 @@ def testar_health():
 
 
 def testar_g2():
-    canal = grpc.insecure_channel("192.168.1.5:50051")
+    canal = grpc.insecure_channel(ENDERECO)
     cliente = shipping_pb2_grpc.ShippingServiceStub(canal)
 
     resposta = cliente.CalculateShipping(
@@ -48,7 +51,7 @@ def testar_g2():
 
 
 def testar_g3():
-    canal = grpc.insecure_channel("192.168.1.5:50051")
+    canal = grpc.insecure_channel(ENDERECO)
     cliente = shipping_pb2_grpc.ShippingServiceStub(canal)
 
     resposta = cliente.CalculateShipping(
@@ -72,7 +75,7 @@ def testar_g3():
 
 
 def testar_g4():
-    canal = grpc.insecure_channel("192.168.1.5:50051")
+    canal = grpc.insecure_channel(ENDERECO)
     cliente = shipping_pb2_grpc.ShippingServiceStub(canal)
 
     resposta = cliente.CalculateShipping(
@@ -95,7 +98,7 @@ def testar_g4():
 
 
 def testar_g5():
-    canal = grpc.insecure_channel("192.168.1.5:50051")
+    canal = grpc.insecure_channel(ENDERECO)
     cliente = shipping_pb2_grpc.ShippingServiceStub(canal)
 
     try:
