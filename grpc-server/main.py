@@ -14,10 +14,10 @@ import shipping_pb2_grpc
 # Configuracoes do servidor
 # ============================================================
 
-# Codigo da equipe Servidor.
-# Podemos alterar o codigo da equipe S01, para o codigo real da nossa equipe.
+# Codigo da equipe Servidor, informado no sorteio (na integracao usamos S13).
+# O padrao S00 e o mesmo do servidor REST.
 
-SERVER_TEAM = os.getenv("SERVER_TEAM", "S01")
+SERVER_TEAM = os.getenv("SERVER_TEAM", "S00")
 
 # Porta do servidor gRPC.
 # A porta 50051 e a porta sugerida pelo contrato.

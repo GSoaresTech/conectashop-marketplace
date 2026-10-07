@@ -18,7 +18,7 @@
 
 | Variável | Padrão |
 |---|---|
-| `SERVER_TEAM` | `S01` |
+| `SERVER_TEAM` | `S00` |
 | `GRPC_PORT` | `50051` |
 
 O host é fixo em `0.0.0.0`, então o serviço aceita conexões de outras máquinas.
