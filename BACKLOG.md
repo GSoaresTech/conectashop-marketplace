@@ -1,34 +1,36 @@
 # Backlog
 
 Hierarquia: ÉPICO (`Exx`) → FEATURE (`Fxx`) → USER STORY (`USxx`).
-Cada feature corresponde a uma branch. Status: `A fazer`, `Em andamento`, `Concluído`.
+Cada feature foi entregue por branch e pull request. Status: `A fazer`, `Em andamento`, `Concluído`.
+
+Projeto encerrado em 06/10/2026, com todas as features concluídas.
 
 ## Resumo
 
 | Épico | Feature | Responsável | Branch | Status |
 |---|---|---|---|---|
-| E01 | F01 Estrutura do repositório | Gabriel | `feature/f01-estrutura-repositorio` | Concluído |
-| E02 | F02 Configuração do servidor REST | Gabriel | `feature/rest-server` | Concluído |
-| E02 | F03 Headers obrigatórios | Gabriel | `feature/rest-server` | Concluído |
-| E02 | F04 Consulta de produto | Gabriel | `feature/rest-server` | Concluído |
-| E02 | F05 Cotação | Gabriel | `feature/rest-server` | Concluído |
-| E02 | F06 Erros padronizados | Gabriel | `feature/rest-server` | Concluído |
-| E02 | F07 Logs REST | Gabriel | `feature/rest-server` | Concluído |
-| E02 | F08 Testes REST | Gabriel | `feature/rest-server` | Concluído |
-| E03 | F09 Configuração do servidor gRPC | membro3 | `feature/f09-grpc-configuracao` | A fazer |
-| E03 | F10 Health | membro3 | `feature/f10-grpc-health` | A fazer |
-| E03 | F11 Validação de entrada | membro3 | `feature/f11-grpc-validacao` | A fazer |
-| E03 | F12 Cálculo de frete | membro3 | `feature/f12-grpc-frete` | A fazer |
-| E03 | F13 Logs gRPC | membro3 | `feature/f13-grpc-logs` | A fazer |
-| E03 | F14 Testes gRPC | membro3 | `feature/f14-grpc-testes` | A fazer |
-| E04 | F15 Validação em rede | Gabriel e membro3 | `feature/f15-validacao-rede` | A fazer |
-| E04 | F16 Instruções de execução | Gabriel e membro3 | `feature/f16-instrucoes-execucao` | A fazer |
-| E04 | F17 Registro das integrações | Deyvid | `feature/f17-registro-integracoes` | A fazer |
-| E04 | F18 Relatório técnico | Deyvid | `feature/f18-relatorio-tecnico` | A fazer |
+| E01 | F01 Estrutura do repositório | Gabriel Soares | `feature/f01-estrutura-repositorio` | Concluído |
+| E02 | F02 Configuração do servidor REST | Gabriel Soares | `feature/rest-server` | Concluído |
+| E02 | F03 Headers obrigatórios | Gabriel Soares | `feature/rest-server` | Concluído |
+| E02 | F04 Consulta de produto | Gabriel Soares | `feature/rest-server` | Concluído |
+| E02 | F05 Cotação | Gabriel Soares | `feature/rest-server` | Concluído |
+| E02 | F06 Erros padronizados | Gabriel Soares | `feature/rest-server` | Concluído |
+| E02 | F07 Logs REST | Gabriel Soares | `feature/rest-server` | Concluído |
+| E02 | F08 Testes REST | Gabriel Soares | `feature/rest-server` | Concluído |
+| E03 | F09 Configuração do servidor gRPC | Gabriel Marques | `feature/grpc-server`, `fix/grpc-ajustes-finais` | Concluído |
+| E03 | F10 Health | Gabriel Marques | `feature/grpc-server` | Concluído |
+| E03 | F11 Validação de entrada | Gabriel Marques | `feature/grpc-server` | Concluído |
+| E03 | F12 Cálculo de frete | Gabriel Marques | `feature/grpc-server` | Concluído |
+| E03 | F13 Logs gRPC | Gabriel Marques | `feature/grpc-server`, `fix/grpc-ajustes-finais` | Concluído |
+| E03 | F14 Testes gRPC | Gabriel Marques | `feature/grpc-server`, `fix/grpc-ajustes-finais` | Concluído |
+| E04 | F15 Validação em rede | Gabriel Soares e Gabriel Marques | `feature/f17-registro-integracoes` | Concluído |
+| E04 | F16 Instruções de execução | Gabriel Soares e Gabriel Marques | `feature/f16-instrucoes-execucao` | Concluído |
+| E04 | F17 Registro das integrações | Deyvid Gustavo | `feature/f17-registro-integracoes` | Concluído |
+| E04 | F18 Relatório técnico | Deyvid Gustavo | `feature/f18-relatorio-tecnico` | Concluído |
 
 ---
 
-## E01 — Base do repositório
+## E01: Base do repositório
 
 ### F01 Estrutura do repositório
 
@@ -39,7 +41,7 @@ Cada feature corresponde a uma branch. Status: `A fazer`, `Em andamento`, `Concl
 
 ---
 
-## E02 — Servidor REST (Catalog & Quote API)
+## E02: Servidor REST (Catalog & Quote API)
 
 Referência: [contracts/rest/catalog-quote-api.md](contracts/rest/catalog-quote-api.md)
 
@@ -92,7 +94,7 @@ Referência: [contracts/rest/catalog-quote-api.md](contracts/rest/catalog-quote-
 
 ---
 
-## E03 — Servidor gRPC (ShippingService)
+## E03: Servidor gRPC (ShippingService)
 
 Referência: [contracts/grpc/README.md](contracts/grpc/README.md)
 
@@ -136,12 +138,13 @@ Referência: [contracts/grpc/README.md](contracts/grpc/README.md)
 
 ---
 
-## E04 — Integração e entrega
+## E04: Integração e entrega
 
 ### F15 Validação em rede
 
 - **US22** Como equipe Servidor, quero acessar REST e gRPC a partir de outra máquina, para garantir que os Clientes conseguirão conectar.
   - Checklist de [docs/integracao.md](docs/integracao.md) concluído.
+  - O acesso externo ao REST foi confirmado pelas chamadas do Cliente C5. Para o gRPC não houve chamada externa registrada no laboratório (ver [docs/integracao.md](docs/integracao.md)).
 
 ### F16 Instruções de execução
 
