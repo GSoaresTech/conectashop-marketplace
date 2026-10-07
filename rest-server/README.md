@@ -1,6 +1,6 @@
-# Servidor REST — Catalog & Quote API
+# Servidor REST: Catalog & Quote API
 
-- Responsável: Gabriel
+- Responsável: Gabriel Soares
 - Tecnologia: Python 3.13, FastAPI, Uvicorn
 - Contrato: [contracts/rest/catalog-quote-api.md](../contracts/rest/catalog-quote-api.md)
 - Backlog: épico E02 (F02 a F08)
@@ -52,13 +52,13 @@ pip install -r requirements.txt
 Linux:
 
 ```bash
-SERVER_TEAM=S03 python -m app.main
+SERVER_TEAM=S13 python -m app.main
 ```
 
 Windows (CMD):
 
 ```bat
-set SERVER_TEAM=S03
+set SERVER_TEAM=S13
 python -m app.main
 ```
 
