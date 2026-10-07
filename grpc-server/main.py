@@ -14,10 +14,10 @@ import shipping_pb2_grpc
 # Configuracoes do servidor
 # ============================================================
 
-# Codigo da equipe Servidor.
-# Podemos alterar o codigo da equipe S01, para o codigo real da nossa equipe.
+# Codigo da equipe Servidor, informado no sorteio (na integracao usamos S13).
+# O padrao S00 e o mesmo do servidor REST.
 
-SERVER_TEAM = os.getenv("SERVER_TEAM", "S01")
+SERVER_TEAM = os.getenv("SERVER_TEAM", "S00")
 
 # Porta do servidor gRPC.
 # A porta 50051 e a porta sugerida pelo contrato.
@@ -29,10 +29,11 @@ PORT = int(os.getenv("GRPC_PORT", "50051"))
 # Configuracao dos logs
 # ============================================================
 
-# Cria a pasta de logs automaticamente, caso ela ainda nao exista.
+# O log fica em logs/grpc, na raiz do repositorio, junto com o log do REST.
+# Cria a pasta automaticamente, caso ela ainda nao exista.
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-LOG_DIR = os.path.join(BASE_DIR, "logs")
+LOG_DIR = os.path.join(os.path.dirname(BASE_DIR), "logs", "grpc")
 LOG_FILE = os.path.join(LOG_DIR, "server.log")
 os.makedirs(LOG_DIR, exist_ok=True)
 
